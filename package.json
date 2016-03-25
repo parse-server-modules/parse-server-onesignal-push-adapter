@@ -1,5 +1,5 @@
 {
-  "name": "parse-server-onesignalpush-adapter",
+  "name": "parse-server-onesignal-push-adapter",
   "version": "1.0.0",
   "description": "One Signal push adapter for parse-server",
   "main": "lib/index.js",
@@ -18,7 +18,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/parse-server-modules/parse-server-push-adapter.git"
+    "url": "git+https://github.com/parse-server-modules/parse-server-onesignal-push-adapter.git"
   },
   "author": "Parse",
   "license": "MIT",
@@ -37,7 +37,7 @@
     "parse-server-push-adapter": "^1.0.0"
   },
   "bugs": {
-    "url": "https://github.com/parse-server-modules/parse-server-push-adapter/issues"
+    "url": "https://github.com/parse-server-modules/parse-server-onesignal-push-adapter/issues"
   },
-  "homepage": "https://github.com/parse-server-modules/parse-server-push-adapter#readme"
+  "homepage": "https://github.com/parse-server-modules/parse-server-onesignal-push-adapter#readme"
 }
