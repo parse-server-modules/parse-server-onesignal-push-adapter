@@ -10,11 +10,13 @@ OneSignal push adapter for parse-server
 
 ## Installation
 
+```
 npm install --save parse-server-onesignal-push-adapter
-
+```
 
 ## Usage
 
+```
 var OneSignalPushAdapter = require('parse-server-onesignal-push-adapter');
 var oneSignalPushAdapter = new OneSignalPushAdapter({
   oneSignalAppId:"your-one-signal-app-id",
@@ -27,3 +29,4 @@ var api = new ParseServer({
   },
   ...otherOptions
 });
+```
