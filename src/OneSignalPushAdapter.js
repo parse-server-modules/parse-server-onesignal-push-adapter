@@ -132,6 +132,10 @@ export class OneSignalPushAdapter {
     if(data['uri']) {
       post['url'] = data['uri'];
     }
+    if (data['android_background_data']){
+        post['android_background_data'] = data['android_background_data']
+        delete data['android_background_data']
+    }
 
     post['data'] = data;
 
