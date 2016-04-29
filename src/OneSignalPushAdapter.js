@@ -78,13 +78,17 @@ export class OneSignalPushAdapter {
       post['ios_sound'] = data['sound'];
       delete data['sound'];
     }
+    var contentAvailable = false;
     if(data['content-available'] == 1) {
-      post['content_available'] = true;
+      contentAvailable = true;
       delete data['content-available'];
     }
     if(data['background_data'] == true) {
-      post['content_available'] = true;
+      contentAvailable = true;
       delete data['background_data'];
+    }
+    if(contentAvailable){
+      post['content_available'] = true;
     }
 
     post['data'] = data;
@@ -137,9 +141,17 @@ export class OneSignalPushAdapter {
     if(data['uri']) {
       post['url'] = data['uri'];
     }
+    var backgroundData = false;
+    if(data['android_background_data'] == true) {
+      backgroundData = true;
+      delete data['android_background_data'];
+    }
     if(data['background_data'] == true) {
-      post['android_background_data'] = true;
+      backgroundData = true;
       delete data['background_data'];
+    }
+    if(backgroundData){
+      post['android_background_data'] = true;
     }
 
     post['data'] = data;
