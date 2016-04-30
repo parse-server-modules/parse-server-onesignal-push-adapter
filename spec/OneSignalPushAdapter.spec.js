@@ -179,7 +179,7 @@ describe('OneSignalPushAdapter', () => {
 
     oneSignalPushAdapter.sendToGCM(backgroundPush,[{'deviceToken':'androidToken1'},{'deviceToken':'androidToken2'}])
     expect(sendToOneSignal).toHaveBeenCalled();
-    var args = sendToOneSignal.calls.first().args;
+    var args = sendToOneSignal.calls.argsFor(0).args;
     expect(args[0]).toEqual({
       'android_background_data': true,
       'data':{'misc-data':'Example Data'},
@@ -188,7 +188,7 @@ describe('OneSignalPushAdapter', () => {
 
     oneSignalPushAdapter.sendToAPNS(backgroundPush,[{'deviceToken':'iosToken1'},{'deviceToken':'iosToken2'}])
     expect(sendToOneSignal).toHaveBeenCalled();
-    var args = sendToOneSignal.calls.first().args;
+    args = sendToOneSignal.calls.argsFor(1).args;
     expect(args[0]).toEqual({
       'content_available': true,
       'data':{'misc-data':'Example Data'},
