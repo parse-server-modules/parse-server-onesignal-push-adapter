@@ -188,7 +188,7 @@ describe('OneSignalPushAdapter', () => {
 
     oneSignalPushAdapter.sendToAPNS(backgroundPush,[{'deviceToken':'iosToken1'},{'deviceToken':'iosToken2'}])
     expect(sendToOneSignal).toHaveBeenCalled();
-    var args = sendToOneSignal.calls.second().args;
+    var args = sendToOneSignal.calls.first().args;
     expect(args[0]).toEqual({
       'content_available': true,
       'data':{'misc-data':'Example Data'},
