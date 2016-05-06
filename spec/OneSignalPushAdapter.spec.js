@@ -161,6 +161,7 @@ describe('OneSignalPushAdapter', () => {
   	expect(args[0]).toEqual({
   		'contents': { 'en':'Example content'},
   		'title': {'en':'Example title'},
+      'android_background_data':true,
   		'data':{'misc-data':'Example Data'},
   		'include_android_reg_ids': ['androidToken1','androidToken2']
   	})
