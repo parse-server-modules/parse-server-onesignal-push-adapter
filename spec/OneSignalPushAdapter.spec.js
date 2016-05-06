@@ -153,6 +153,7 @@ describe('OneSignalPushAdapter', () => {
   	oneSignalPushAdapter.sendToGCM({'data':{
   		'title': 'Example title',
   		'alert': 'Example content',
+      'background_data':true,
   		'misc-data': 'Example Data'
   	}},[{'deviceToken':'androidToken1'},{'deviceToken':'androidToken2'}])
 
