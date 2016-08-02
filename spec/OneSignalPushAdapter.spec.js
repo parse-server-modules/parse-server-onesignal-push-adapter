@@ -40,6 +40,17 @@ describe('OneSignalPushAdapter', () => {
     done();
   });
 
+  it('can be initialized with multiConfigs', (done) => {
+
+    var oneSignalPushAdapter = new OneSignalPushAdapter(multiConfigs);
+
+    var senderMap = oneSignalPushAdapter.senderMap;
+
+    expect(senderMap.ios instanceof Function).toBe(true);
+    expect(senderMap.android instanceof Function).toBe(true);
+    done();
+  });
+
   it('can get valid push types', (done) => {
     var oneSignalPushAdapter = new OneSignalPushAdapter(pushConfig);
 
@@ -110,6 +121,60 @@ describe('OneSignalPushAdapter', () => {
       }
     ];
     var data = {};
+
+    oneSignalPushAdapter.send(data, installations);
+    // Check android sender
+    expect(androidSender).toHaveBeenCalled();
+    var args = androidSender.calls.first().args;
+    expect(args[0]).toEqual(data);
+    expect(args[1]).toEqual([
+      makeDevice('androidToken')
+    ]);
+    // Check ios sender
+    expect(iosSender).toHaveBeenCalled();
+    args = iosSender.calls.first().args;
+    expect(args[0]).toEqual(data);
+    expect(args[1]).toEqual([
+      makeDevice('iosToken')
+    ]);
+    done();
+  });
+
+    it('can select where to send push notifications', (done) => {
+    var oneSignalPushAdapter = new OneSignalPushAdapter(multiConfigs);
+
+    // Mock android ios senders
+    var androidSender = jasmine.createSpy('send')
+    var iosSender = jasmine.createSpy('send')
+
+    var senderMap = {
+      ios: iosSender,
+      android: androidSender
+    };
+    oneSignalPushAdapter.senderMap = senderMap;
+
+    // Mock installations
+    var installations = [
+      {
+        deviceType: 'android',
+        deviceToken: 'androidToken'
+      },
+      {
+        deviceType: 'ios',
+        deviceToken: 'iosToken'
+      },
+      {
+        deviceType: 'win',
+        deviceToken: 'winToken'
+      },
+      {
+        deviceType: 'android',
+        deviceToken: undefined
+      }
+    ];
+    var data = {
+      _pushTo: 'app1'
+    };
 
     oneSignalPushAdapter.send(data, installations);
     // Check android sender
