@@ -19,8 +19,14 @@ npm install --save parse-server-onesignal-push-adapter
 ```
 var OneSignalPushAdapter = require('parse-server-onesignal-push-adapter');
 var oneSignalPushAdapter = new OneSignalPushAdapter({
-  oneSignalAppId:"your-one-signal-app-id",
-  oneSignalApiKey:"your-one-signal-api-key"
+  app1: {
+    oneSignalAppId:"your-one-signal-app-id",
+    oneSignalApiKey:"your-one-signal-api-key"
+  },
+  app2: {
+    oneSignalAppId:"your-one-signal-app-id",
+    oneSignalApiKey:"your-one-signal-api-key"
+  }
 });
 
 var api = new ParseServer({
@@ -28,5 +34,17 @@ var api = new ParseServer({
     adapter: oneSignalPushAdapter
   },
   ...otherOptions
+});
+```
+
+When calling `Parse.Push.send`, select the key pairs by setting `_pushTo` in push data. E.g.
+
+```
+Parse.Push.send({
+  where: query, 
+  data: {
+    _pushTo: 'app1', 
+    message: 'hello'
+  }
 });
 ```
