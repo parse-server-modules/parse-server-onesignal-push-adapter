@@ -29,7 +29,7 @@ export class OneSignalPushAdapter {
         configs[key]['appId'] = pushConfig[key]['oneSignalAppId'];
         configs[key]['apiKey'] = pushConfig[key]['oneSignalApiKey'];
       }
-      if (!configs.size) {
+      if (!Object.keys(configs).length) {
         throw "Trying to initialize OneSignalPushAdapter without oneSignalAppId or oneSignalApiKey";
       }
       this.OneSignalConfig = configs;
