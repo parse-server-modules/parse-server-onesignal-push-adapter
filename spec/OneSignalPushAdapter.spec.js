@@ -9,6 +9,17 @@ var pushConfig = {
   oneSignalApiKey:"API KEY"
 };
 
+var multiConfigs = {
+  app1:{
+    oneSignalAppId:"APP ID",
+    oneSignalApiKey:"API KEY"
+  },
+  app2:{
+    oneSignalAppId:"APP ID",
+    oneSignalApiKey:"API KEY"
+  }
+};
+
 describe('OneSignalPushAdapter', () => {
   it('can be initialized', (done) => {
 
