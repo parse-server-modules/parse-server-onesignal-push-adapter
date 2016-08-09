@@ -121,6 +121,11 @@ export class OneSignalPushAdapter {
     data= deepcopy(data['data']);
 
     var post = {};
+    if (data['android_background_data']){
+        post['android_background_data'] = data['android_background_data'];
+        delete data['android_background_data'];
+        delete data['alert'];
+    }
 
     if(data['alert']) {
       post['contents'] = {en: data['alert']};

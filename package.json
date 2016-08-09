@@ -1,6 +1,6 @@
 {
   "name": "parse-server-onesignal-push-adapter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "One Signal push adapter for parse-server",
   "main": "lib/index.js",
   "files": [
@@ -18,9 +18,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/parse-server-modules/parse-server-onesignal-push-adapter.git"
+    "url": "git+https://github.com/lolobosse/parse-server-onesignal-push-adapter.git"
   },
-  "author": "Parse",
+  "author": "Lolobosse",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.6.5",
