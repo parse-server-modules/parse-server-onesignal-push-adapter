@@ -41,10 +41,17 @@ When calling `Parse.Push.send`, select the key pairs by setting `_pushTo` in pus
 
 ```
 Parse.Push.send({
-  where: query, 
+  where: query,
   data: {
-    _pushTo: 'app1', 
+    _pushTo: 'app1',
     message: 'hello'
   }
 });
 ```
+
+## To Take Effect
+```
+npm run-script prepublish
+```
+
+Commit and push to master.
