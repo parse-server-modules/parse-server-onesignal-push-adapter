@@ -78,8 +78,9 @@ export class OneSignalPushAdapter {
       post['ios_sound'] = data['sound'];
       delete data['sound'];
     }
-    if(data['content-available'] == 1) {
+    if(data['background_data'] == true || data['content-available'] == 1) {
       post['content_available'] = true;
+      delete data['background_data'];
       delete data['content-available'];
     }
     post['data'] = data;
@@ -132,7 +133,11 @@ export class OneSignalPushAdapter {
     if(data['uri']) {
       post['url'] = data['uri'];
     }
-
+    if(data['background_data'] == true || data['android_background_data'] == true) {
+      post['android_background_data'] = true;
+      delete data['background_data'];
+      delete data['android_background_data'];
+    }
     post['data'] = data;
 
     let promise = new Parse.Promise();

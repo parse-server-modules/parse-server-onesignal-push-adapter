@@ -153,6 +153,7 @@ describe('OneSignalPushAdapter', () => {
   	oneSignalPushAdapter.sendToGCM({'data':{
   		'title': 'Example title',
   		'alert': 'Example content',
+      'android_background_data':true,
   		'misc-data': 'Example Data'
   	}},[{'deviceToken':'androidToken1'},{'deviceToken':'androidToken2'}])
 
@@ -161,9 +162,48 @@ describe('OneSignalPushAdapter', () => {
   	expect(args[0]).toEqual({
   		'contents': { 'en':'Example content'},
   		'title': {'en':'Example title'},
+      'android_background_data':true,
   		'data':{'misc-data':'Example Data'},
   		'include_android_reg_ids': ['androidToken1','androidToken2']
   	})
+  	done();
+  });
+
+  it("can send generic background pushes", (done) => {
+  	var oneSignalPushAdapter = new OneSignalPushAdapter(pushConfig);
+  	var sendToOneSignal = jasmine.createSpy('sendToOneSignal');
+  	oneSignalPushAdapter.sendToOneSignal = sendToOneSignal;
+
+    var installations = [{
+        deviceType: 'android',
+        deviceToken: 'androidToken'
+    }, {
+        deviceType: 'ios',
+        deviceToken: 'iosToken'
+    }];
+
+    oneSignalPushAdapter.send({
+        'data': {
+            'background_data':true,
+            'misc-data': 'Example Data'
+        }
+    }, installations);
+
+    expect(sendToOneSignal).toHaveBeenCalled();
+    var args = sendToOneSignal.calls.first().args;
+    expect(args[0]).toEqual({
+      'content_available':true,
+  		'data':{'misc-data':'Example Data'},
+  		'include_ios_tokens':['iosToken']
+  	});
+
+    args = sendToOneSignal.calls.mostRecent().args;
+    expect(args[0]).toEqual({
+      'android_background_data':true,
+  		'data':{'misc-data':'Example Data'},
+  		'include_android_reg_ids':['androidToken']
+  	});
+
   	done();
   });
 
