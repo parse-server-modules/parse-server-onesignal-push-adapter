@@ -43,9 +43,9 @@ export class OneSignalPushAdapter {
     this.senderMap['android'] = this.sendToGCM.bind(this);
   }
 
-  send(data, installations, projectKey) {
+  send(data, installations) {
     let deviceMap = utils.classifyInstallations(installations, this.validPushTypes);
-    projectKey = projectKey || 'default';
+    let projectKey = data._pushTo || 'default';
     if (!this.OneSignalConfig[projectKey]) {
       console.log('Unknown OneSignal project: %s to send pushes to.', projectKey);
       let promise = new Parse.Promise();
