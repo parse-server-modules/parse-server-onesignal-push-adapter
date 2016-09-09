@@ -195,6 +195,7 @@ describe('OneSignalPushAdapter', () => {
     var args = sendToOneSignal.calls.first().args;
     expect(args[0]).toEqual({
       'content_available':true,
+      'mutable_content':true,
   		'data':{'misc-data':'Example Data'},
   		'include_ios_tokens':['iosToken']
   	});
