@@ -128,6 +128,7 @@ describe('OneSignalPushAdapter', () => {
   		'alert': "Example content",
   		'sound': "Example sound",
   		'content-available': 1,
+  		'mutable-content': 1,
   		'misc-data': 'Example Data'
   	}},[{'deviceToken':'iosToken1'},{'deviceToken':'iosToken2'}])
 
@@ -139,6 +140,7 @@ describe('OneSignalPushAdapter', () => {
   		'contents': { 'en':'Example content'},
   		'ios_sound': 'Example sound',
   		'content_available':true,
+  		'mutable_content':true,
   		'data':{'misc-data':'Example Data'},
   		'include_ios_tokens':['iosToken1','iosToken2']
   	})
@@ -193,6 +195,7 @@ describe('OneSignalPushAdapter', () => {
     var args = sendToOneSignal.calls.first().args;
     expect(args[0]).toEqual({
       'content_available':true,
+      'mutable_content':true,
   		'data':{'misc-data':'Example Data'},
   		'include_ios_tokens':['iosToken']
   	});
@@ -245,6 +248,7 @@ describe('OneSignalPushAdapter', () => {
   		'title': 'Example title',
   		'alert': 'Example content',
   		'content-available':1,
+  		'mutable-content':1,
   		'misc-data': 'Example Data'
   	}}, installations);
 
@@ -255,6 +259,7 @@ describe('OneSignalPushAdapter', () => {
     expect(args[0]).toEqual(JSON.stringify({
   		'contents': { 'en':'Example content'},
   		'content_available':true,
+  		'mutable_content':true,
   		'data':{'title':'Example title','misc-data':'Example Data'},
   		'include_ios_tokens':['iosToken'],
   		'app_id':'APP ID'
