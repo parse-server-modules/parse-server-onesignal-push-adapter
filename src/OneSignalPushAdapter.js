@@ -83,6 +83,11 @@ export class OneSignalPushAdapter {
       delete data['background_data'];
       delete data['content-available'];
     }
+    if(data['mutable-content'] == 1) {
+      post['mutable_content'] = true;
+      delete data['mutable-content'];
+    }
+    
     post['data'] = data;
 
     let promise = new Parse.Promise();
