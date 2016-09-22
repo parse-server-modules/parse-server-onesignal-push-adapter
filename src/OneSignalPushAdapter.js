@@ -56,7 +56,7 @@ export class OneSignalPushAdapter {
   }
 
   sendToAPNS(data,tokens) {
-
+    var pushTime = data['push_time'];
     data= deepcopy(data['data']);
 
     var post = {};
@@ -82,6 +82,9 @@ export class OneSignalPushAdapter {
       post['content_available'] = true;
       delete data['background_data'];
       delete data['content-available'];
+    }
+    if (pushTime) {
+      post['send_after'] = pushTime;
     }
     post['data'] = data;
 
@@ -118,6 +121,7 @@ export class OneSignalPushAdapter {
   }
 
   sendToGCM(data,tokens) {
+    var pushTime = data['push_time'];
     data= deepcopy(data['data']);
 
     var post = {};
@@ -137,6 +141,9 @@ export class OneSignalPushAdapter {
       post['android_background_data'] = true;
       delete data['background_data'];
       delete data['android_background_data'];
+    }
+    if (pushTime) {
+      post['send_after'] = pushTime;
     }
     post['data'] = data;
 
