@@ -60,7 +60,7 @@ export class OneSignalPushAdapter {
     data= deepcopy(data['data']);
 
     var post = {};
-    if(data['badge']) {
+    if(typeof data['badge'] !== undefined) {
       if(data['badge'] == "Increment") {
         post['ios_badgeType'] = 'Increase';
         post['ios_badgeCount'] = 1;
