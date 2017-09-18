@@ -161,7 +161,7 @@ export class OneSignalPushAdapter {
     this.sendNext = function() {
       post['include_android_reg_ids'] = [];
       tokens.slice(offset,offset+chunk).forEach(function(i) {
-        post['include_android_reg_ids'].push(i['deviceToken'])
+        post['include_android_reg_ids'].push(i['deviceToken'].replace(/[^0-9a-z]/gi, ''))
       })
       offset+=chunk;
       this.sendToOneSignal(post, handleResponse);
